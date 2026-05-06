@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Kimi Code Web UI Enhancer",
+  "version": "2.0.0",
+  "description": "Enhances Kimi Code Web UI with grouped folder styling, path truncation, and session auto-scroll",
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:*/*", "http://127.0.0.1:*/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" }
+}

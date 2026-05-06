@@ -1,0 +1,21 @@
+/* Kimi Code Web UI Enhancer Styles */
+
+/* Smooth transitions for group backgrounds */
+section, article, [class*="group"], [class*="folder"] {
+  transition: background-color 0.2s ease;
+}
+
+/* Highlight group headers with paths */
+h1, h2, h3, h4, h5, h6, [role="heading"] {
+  transition: color 0.2s ease;
+}
+
+/* Ensure truncated path labels are clearly visible */
+[data-kimi-truncated="true"] {
+  font-weight: 500;
+}
+
+/* Bright orange "Turbo" branding */
+.kimi-turbo {
+  color: #ff6600 !important;
+}

@@ -1,0 +1,15 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Secrets (general safety)
+*.env
+.env.*
+.env
+*.secret
+*.key
+*.token
+*.credential*
