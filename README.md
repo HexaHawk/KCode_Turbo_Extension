@@ -12,6 +12,7 @@ This extension runs inside your browser and improves the Kimi Code Web interface
 |---------|-------------|
 | **Grouped Folder View** | Automatically enables "Grouped by folder" session view |
 | **Path Truncation** | Replaces long absolute paths with basenames in the sidebar |
+| **AFK Cleanup** | Removes `/afk`, `AFK`, and `/AFK` from session titles |
 | **Header Rebrand** | Changes "Kimi Code" → "KCode Turbo" |
 | **Auto-Scroll** | Automatically scrolls to bottom when switching sessions |
 | **Row Striping** | Adds subtle alternating background to session list items |
@@ -82,8 +83,9 @@ The extension injects a content script into Kimi Code Web pages. It uses DOM mut
 
 1. Detect when the session list is rendered and click the "Grouped by folder" toggle
 2. Walk text nodes and truncate any absolute paths to their basenames
-3. Replace the header logo text
-4. Monitor URL changes to detect session switches and trigger auto-scroll
+3. Strip `/afk`, `AFK`, and `/AFK` strings from session titles
+4. Replace the header logo text
+5. Monitor URL changes to detect session switches and trigger auto-scroll
 
 All changes are purely cosmetic — no data is sent to any external server.
 

@@ -37,6 +37,36 @@
     if (count > 0) console.log('[Kimi Enhancer] Truncated', count, 'paths');
   };
 
+  const AFK_PATTERNS = ['/afk', 'AFK', '/AFK'];
+
+  const removeAfkStrings = () => {
+    const root = document.getElementById('sessions');
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    let count = 0;
+    while ((node = walker.nextNode())) {
+      const parent = node.parentElement;
+      if (!parent) continue;
+      // Only touch text inside likely session-title containers within the sidebar
+      const isSessionTitle = parent.closest('#sessions li') &&
+        ['BUTTON', 'SPAN', 'DIV', 'A'].includes(parent.tagName);
+      if (!isSessionTitle) continue;
+      const text = node.textContent;
+      if (!text) continue;
+      let newText = text;
+      for (const p of AFK_PATTERNS) {
+        newText = newText.split(p).join('');
+      }
+      newText = newText.replace(/\s+/g, ' ').trim();
+      if (newText !== text) {
+        node.textContent = newText;
+        count++;
+      }
+    }
+    if (count > 0) console.log('[Kimi Enhancer] Removed AFK strings from', count, 'session titles');
+  };
+
   const injectStyles = () => {
     const styleId = 'kimi-enhancer-styles';
     let style = document.getElementById(styleId);
@@ -175,6 +205,7 @@
     try {
       enableGroupedViewOnce();
       truncatePaths();
+      removeAfkStrings();
       injectStyles();
       rebrandHeader();
     } catch (e) {
